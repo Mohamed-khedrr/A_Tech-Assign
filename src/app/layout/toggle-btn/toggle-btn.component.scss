@@ -1,0 +1,76 @@
+@import "../../../scss-utils/utils";
+.custom-toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.custom-toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #8a74f9;
+}
+
+input:checked + .slider:before {
+  transform: translateX(30px);
+}
+
+.toggle-text {
+  position: absolute;
+  right: 70px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: $font-neo;
+  font-size: 0.875rem;
+  color: rgba(156, 157, 159, 1);
+  opacity: 0;
+  transition: 0.4s;
+}
+
+input:checked ~ .toggle-text {
+  opacity: 1;
+}
+
+/* RTL Support */
+[dir="rtl"] .custom-toggle-switch .slider:before {
+  right: 2px;
+  left: auto;
+}
+
+[dir="rtl"] input:checked + .slider:before {
+  transform: translateX(-30px);
+}
+
+[dir="rtl"] .toggle-text {
+  left: 70px;
+  right: auto;
+}
