@@ -1,0 +1,9 @@
+.main-app-container {
+  background-color: #f3f5f7;
+  .chart-container {
+    width: calc((100vw / 3) * 2);
+  }
+  .card-container {
+    width: calc(100vw / 3);
+  }
+}
