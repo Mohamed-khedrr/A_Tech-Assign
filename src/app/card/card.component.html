@@ -2,15 +2,19 @@
 
   <div class="ticket-body">
     <p class="ticket-link">
-      www.tazkty.com/473847
+      <button (click)="copyTicketLink()" class="border-0 me-2"><img src="/images/copy-icon.svg" alt=""></button>
+      {{ticketLink()}}
     </p>
-    <p class="ticket-date">فعال حتي 15 يوليو 2023</p>
+    <p class="ticket-date">{{createStringDate()}}</p>
   </div>
   <ng-template pTemplate="footer ">
     <footer class="ticket-footer d-flex justify-content-between align-items-end">
 
       <section class="left">
-        <div class="qr"></div>
+        <div class="qr">
+          <qrcode [qrdata]="'Your data string'" [width]="82" [qrdata]="qrData()" [margin]="1"
+            [errorCorrectionLevel]="'M'"></qrcode>
+        </div>
       </section>
       <section class="right d-flex align-items-end  ">
         <button class="share-btn">
