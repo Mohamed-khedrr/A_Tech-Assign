@@ -120,7 +120,7 @@ export class ChartComponent implements AfterViewInit {
             data: [
               {
                 xAxis: 8,
-                y: 'average',
+                // y:  200,
                 lineStyle: {
                   color: '#8A74F9',
                   type: 'solid',

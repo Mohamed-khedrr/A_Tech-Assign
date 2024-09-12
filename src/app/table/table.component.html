@@ -1,61 +1,86 @@
-<div class="card" [dir]="isRTL ? 'rtl' : 'ltr'">
-  <div class="flex justify-content-between align-items-center mb-3">
-    <p-toggleButton [(ngModel)]="isRTL" onLabel="RTL" offLabel="LTR" (onChange)="toggleDirection()">
-      toggle</p-toggleButton>
-    <button pButton label="حجز تذكرة جديدة" class="p-button-outlined" icon="pi pi-plus"></button>
-  </div>
+<div class="main-conatianer mt-3    " [dir]="isRTL ? 'rtl' : 'ltr'">
 
-  <p-table #dt1 [value]="products" [paginator]="true" [rows]="1" [tableStyle]="{ 'min-width': '50rem' }"
-    [rowsPerPageOptions]="[10, 20, 30]" [showCurrentPageReport]="true" [alwaysShowPaginator]="false"
-    currentPageReportTemplate="عرض {first} إلى {last} من {totalRecords} سجل" [sortMode]="'single'"
+  <p-table #dt1 [value]="products" [paginator]="true" [rows]="2" [tableStyle]="{ 'min-width': '50rem' }"
+    [showCurrentPageReport]="true" [alwaysShowPaginator]="true" [showFirstLastIcon]="false"
+    currentPageReportTemplate="من أصل {totalRecords} سجل" [sortMode]="'single'"
     [globalFilterFields]="['user', 'ticketNumber', 'ticketPrice', 'activities', 'peopleCount', 'purchaseCount', 'ticketPdf']">
 
     <ng-template pTemplate="caption">
-      <div class="flex justify-content-end">
-        <p-iconField iconPosition="left" class="ml-auto">
-          <p-inputIcon styleClass="pi pi-search" />
-          <input pInputText type="text" [(ngModel)]="searchValue" (input)="onSearch($event)"
-            placeholder="Search keyword" />
-        </p-iconField>
+      <div class="d-flex align-items-center justify-content-between  ">
+        <div class="d-flex justify-content-end align-items-center">
+          <span>
+            مبيعات التذاكر
+          </span>
+          <span class="p-input-icon-left ml-auto">
+            <i class="search-icon pi pi-search"></i>
+            <input class="search-input" pInputText type="text" [(ngModel)]="searchValue" (input)="onSearch($event)"
+              placeholder="ابحث عن ..." />
+          </span>
+        </div>
+        <div class="d-flex align-items-center">
+
+          <app-toggle-btn></app-toggle-btn>
+
+
+          <button pButton label="حجز تذكرة جديدة" class="reserv-btn"></button>
+        </div>
       </div>
     </ng-template>
 
     <ng-template pTemplate="header">
       <tr>
+
+
         <th>#</th>
-        <th pSortableColumn="user">المستخدم <p-sortIcon field="user"></p-sortIcon></th>
-        <th pSortableColumn="ticketNumber">رقم التذكرة <p-sortIcon field="ticketNumber"></p-sortIcon></th>
+        <th>المستخدم </th>
+        <th>رقم التذكرة </th>
         <th pSortableColumn="ticketPrice">قيمة التذكرة <p-sortIcon field="ticketPrice"></p-sortIcon></th>
-        <th pSortableColumn="activities">النشاطات <p-sortIcon field="activities"></p-sortIcon></th>
-        <th pSortableColumn="peopleCount">عدد الأشخاص <p-sortIcon field="peopleCount"></p-sortIcon></th>
-        <th pSortableColumn="purchaseCount">عدد مرات الشراء <p-sortIcon field="purchaseCount"></p-sortIcon></th>
+        <th>السينمات </th>
+        <th>عدد الأشخاص </th>
+        <th>عدد مرات الشراء</th>
         <th>التذكرة</th>
       </tr>
     </ng-template>
 
     <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
       <tr>
-        <td>{{ rowIndex + 1 }}</td>
+        <td class="row-number">{{ rowIndex + 1 }}</td>
         <td>
           <div class="d-flex flex align-items-center gap-2">
             <p-avatar [image]="product.userAvatar" shape="circle" size="large"></p-avatar>
             <div>
-              <p class="mb-1">{{ product.user }}</p>
-              <p>{{product.mobileNumber}}</p>
+              <p class="mb-0 user-name">{{ product.user }}</p>
+              <p class="mb-0 user-mobile">{{product.mobileNumber}}</p>
             </div>
           </div>
         </td>
-        <td>{{ product.ticketNumber }}</td>
-        <td>${{ product.ticketPrice }}</td>
-        <td>
-          <p-chip [label]="product.activities[0]" class="custom-chip"></p-chip>
+        <td class="ticket-number">{{ product.ticketNumber }}</td>
+        <td class="ticket-price">${{ product.ticketPrice }}</td>
+        <td class="table-cinema">
+          {{product.activities}}
         </td>
-        <td>{{ product.peopleCount }}</td>
-        <td>{{ product.purchaseCount }}</td>
+        <td class="people-count">{{ product.peopleCount }}</td>
+        <td class="purchase-count">{{ product.purchaseCount }}</td>
         <td>
-          <div class="flex align-items-center gap-2">
-            <i class="pi pi-file-pdf" style="font-size: 1.5rem"></i>
-            <span>تذكرة رقم {{ product.ticketNumber }}.pdf</span>
+          <div class="d-flex align-items-center ticket-file ">
+            <figure class="ticket-icon-container">
+              <img src="images/ticket-icon.svg" alt="ticket icon">
+            </figure>
+            <figcaption>
+              <div>
+                <span>تذكرة رقم </span>
+                <span>{{ product.ticketNumber }}</span>
+                <span>.pdf</span>
+              </div>
+              <div class="text-end file-data">
+                <span class="file-size mx-1">9mb</span>
+                .
+                <span class="file-type mx-1">PDF</span>
+              </div>
+            </figcaption>
+            <button class="p-0 border-0 mx-3">
+              <img src="images/download-icon.svg" alt="User Avatar">
+            </button>
           </div>
         </td>
       </tr>

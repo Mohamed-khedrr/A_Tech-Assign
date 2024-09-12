@@ -8,6 +8,7 @@ import { ChipModule } from 'primeng/chip';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { ToggleBtnComponent } from '../layout/toggle-btn/toggle-btn.component';
 
 interface Product {
   user: string;
@@ -33,6 +34,7 @@ interface Product {
     ToggleButtonModule,
     IconFieldModule,
     InputIconModule,
+    ToggleBtnComponent,
   ],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
