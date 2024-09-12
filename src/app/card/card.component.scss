@@ -7,6 +7,8 @@
     background-size: cover;
     background-position: center;
     border-radius: 12.5px;
+    position: relative;
+    max-height: 264px;
     * {
       font-family: $font-neo;
     }
@@ -32,8 +34,16 @@
       font-size: 0.82rem;
       font-family: $font-inter;
       font-weight: 500;
-    }
+      .copy-btn {
+        transition: all 0.3s; /* Smooth transition for hover effect */
 
+        &:hover {
+          background-color: #e0e0e0;
+          border-radius: 0.3rem;
+          transform: scale(1.1);
+        }
+      }
+    }
     .ticket-date {
       font-size: 0.75rem;
       color: #fff;
@@ -65,6 +75,11 @@
       }
     }
 
+    .trash-btn {
+      position: absolute;
+      top: -3rem;
+      left: 0;
+    }
     .ticket-footer {
       padding: 1rem;
       .left {
@@ -93,6 +108,16 @@
           padding: 4px 6px;
           height: fit-content;
           font-size: 12px;
+          transition: all 0.3s;
+
+          &:hover {
+            background-color: #fff;
+            color: #8a74f9;
+            * {
+              transition: all 0.3s;
+              fill: #8a74f9;
+            }
+          }
         }
       }
     }
