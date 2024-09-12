@@ -1,9 +1,10 @@
 @import "../../../scss-utils/utils";
+
 .custom-toggle-switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 30px;
+  width: 34px;
+  height: 18px;
 }
 
 .custom-toggle-switch input {
@@ -27,8 +28,8 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
+  height: 14px;
+  width: 14px;
   left: 2px;
   bottom: 2px;
   background-color: white;
@@ -41,12 +42,12 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-  transform: translateX(30px);
+  transform: translateX(16px);
 }
 
 .toggle-text {
   position: absolute;
-  right: 70px;
+  right: 40px;
   top: 50%;
   transform: translateY(-50%);
   font-family: $font-neo;
