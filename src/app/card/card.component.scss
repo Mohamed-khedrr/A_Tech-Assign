@@ -40,17 +40,25 @@
 
     .copy-btn {
       transition: all 0.3s;
+      border-radius: 0.3rem;
       &:hover {
         background-color: #e0e0e0;
-        border-radius: 0.3rem;
         transform: scale(1.1);
       }
     }
 
     .trash-btn {
+      background-color: transparent;
       position: absolute;
       top: -3rem;
       left: 0;
+      transition: all 0.3s;
+      border-radius: 0.3rem;
+
+      &:hover {
+        background-color: rgba(224, 224, 224, 0.2);
+        transform: scale(1.1);
+      }
     }
 
     .ticket-date {

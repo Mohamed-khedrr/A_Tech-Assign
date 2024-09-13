@@ -4,11 +4,12 @@ import { CardModule } from 'primeng/card';
 import { TagModule } from 'primeng/tag';
 import { QRCodeModule } from 'angularx-qrcode';
 import { Clipboard } from '@angular/cdk/clipboard';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [CardModule, ButtonModule, TagModule, QRCodeModule],
+  imports: [CardModule, ButtonModule, TagModule, QRCodeModule, TooltipModule],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
 })
