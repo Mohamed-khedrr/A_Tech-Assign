@@ -261,6 +261,8 @@
       @media (max-width: 576px) {
         flex-grow: 1;
         min-width: 60vw;
+        display: flex;
+        justify-content: center;
       }
 
       .p-dropdown-label {
