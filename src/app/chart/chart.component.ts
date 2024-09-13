@@ -35,14 +35,6 @@ export class ChartComponent implements AfterViewInit {
     const myChart = echarts.init(chartDom);
 
     const option = {
-      title: {
-        text: 'إحصائيات استخدام القسمية',
-        left: 'right',
-        textStyle: {
-          fontWeight: 'bold',
-          fontSize: 16,
-        },
-      },
       tooltip: {
         trigger: 'axis',
         formatter: function (params: any) {
@@ -135,7 +127,6 @@ export class ChartComponent implements AfterViewInit {
 
     myChart.setOption(option);
 
-    // Responsive design
     window.addEventListener('resize', () => {
       myChart.resize();
     });

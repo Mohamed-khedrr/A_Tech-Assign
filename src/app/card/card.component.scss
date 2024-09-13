@@ -107,13 +107,8 @@
             transition: all $transition-duration;
 
             &:hover {
-              background-color: #fff;
-              color: $primary-color;
-
-              * {
-                transition: all $transition-duration;
-                fill: $primary-color;
-              }
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+              transform: translateY(-2px);
             }
           }
         }
@@ -127,12 +122,15 @@
       border-radius: 0.3rem;
 
       &:hover {
-        transform: scale(1.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
       }
     }
 
     .copy-btn:hover {
-      background-color: #e0e0e0;
+      // background-color: #e0e0e0;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
     }
 
     .trash-btn {

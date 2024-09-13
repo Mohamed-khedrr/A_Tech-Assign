@@ -1,34 +1,46 @@
-<main class="main-app-container container-fluid ">
-
-  <header class="upper-section ">
-    <section class="d-flex justify-content-between">
-      <button class="edit-btn">
-        تعديل
-        <span>
-          <img src="images/edit.svg" alt="">
-        </span>
-      </button>
-
-      <div class="d-flex align-items-center">
-        <h1 class="ticket-num m-0 me-2">تذكرة رقم #2342</h1>
-        <button class="back-btn border-0 d-flex align-items-center justify-content-center">
-          <img src="images/arrow-right.svg" alt="">
+<main class="main-app-container  d-flex justify-content-center">
+  <div class="container-fluid bg-transparent">
+    <header class="upper-section ">
+      <section class="d-flex justify-content-between">
+        <button class="edit-btn">
+          تعديل
+          <span>
+            <img src="images/edit.svg" alt="">
+          </span>
         </button>
-      </div>
+
+        <div class="d-flex align-items-center">
+          <h1 class="ticket-num m-0 me-2">تذكرة رقم #2342</h1>
+          <button class="back-btn border-0 d-flex align-items-center justify-content-center">
+            <img src="images/arrow-right.svg" alt="">
+          </button>
+        </div>
+      </section>
+
+      <section class="data-section d-flex gap-4 mt-3 bg-transparent">
+        <div class="card-container">
+          <app-card></app-card>
+        </div>
+
+        <div class="chart-container ">
+          <div class="chart-data-container d-flex justify-content-between align-self-center bg-white pt-3 px-4">
+            <div>
+              <p-dropdown [options]="data" [(ngModel)]="selectedCity" optionLabel="name"></p-dropdown>
+            </div>
+            <div class="text-end">
+              <h2 class="chart-header">إحصائيات إستخدام القسيمة</h2>
+              <p class="chart-date">05 يوليو , 2023 - 05 أغسطس , 2023</p>
+            </div>
+          </div>
+          <div>
+            <app-chart></app-chart>
+          </div>
+        </div>
+      </section>
+
+    </header>
+    <section class="lower-section">
+      <app-table></app-table>
     </section>
-
-    <section class="data-section d-flex gap-4 mt-5 bg-transparent">
-      <div class="card-container">
-        <app-card></app-card>
-      </div>
-
-      <div class="chart-container ">
-        <app-chart></app-chart>
-      </div>
-    </section>
-
-  </header>
-  <section class="lower-section">
-    <app-table></app-table>
-  </section>
+  </div>
 </main>
