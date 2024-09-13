@@ -28,9 +28,7 @@
     </ng-template>
 
     <ng-template pTemplate="header">
-      <tr>
-
-
+      <tr class="tr-head">
         <th>#</th>
         <th>المستخدم </th>
         <th>رقم التذكرة </th>
@@ -56,8 +54,9 @@
         </td>
         <td class="ticket-number">{{ product.ticketNumber }}</td>
         <td class="ticket-price">${{ product.ticketPrice }}</td>
-        <td class="table-cinema">
-          {{product.activities}}
+        <td class="table-cinema" [pTooltip]="getToolTipTxt((product.cinemaName|strLengthHandler), product.cinemaName)"
+          tooltipPosition="top">
+          {{product.cinemaName|strLengthHandler}}
         </td>
         <td class="people-count">{{ product.peopleCount }}</td>
         <td class="purchase-count">{{ product.purchaseCount }}</td>
@@ -78,7 +77,7 @@
                 <span class="file-type mx-1">PDF</span>
               </div>
             </figcaption>
-            <button class="p-0 border-0 mx-3">
+            <button class="download-btn p-0 border-0 mx-3">
               <img src="images/download-icon.svg" alt="User Avatar">
             </button>
           </div>
