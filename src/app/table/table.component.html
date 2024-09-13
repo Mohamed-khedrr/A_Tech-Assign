@@ -1,8 +1,8 @@
 <div class="main-conatianer mt-3    " [dir]="isRTL ? 'rtl' : 'ltr'">
 
-  <p-table #dt1 [value]="products" [paginator]="true" [rows]="2" [tableStyle]="{ 'min-width': '50rem' }"
-    [showCurrentPageReport]="true" [alwaysShowPaginator]="true" [showFirstLastIcon]="false"
-    currentPageReportTemplate="من أصل {totalRecords} سجل" [sortMode]="'single'"
+  <p-table #dt1 [value]="products" [paginator]="true" [rows]="1" [showCurrentPageReport]="true"
+    [alwaysShowPaginator]="true" [showFirstLastIcon]="false" currentPageReportTemplate=" من أصل {totalRecords} "
+    [sortMode]="'single'" [paginatorDropdownAppendTo]="'body'" [rowsPerPageOptions]="[1,5, 10, 25]"
     [globalFilterFields]="['user', 'ticketNumber', 'ticketPrice', 'activities', 'peopleCount', 'purchaseCount', 'ticketPdf']">
 
     <ng-template pTemplate="caption">
@@ -16,6 +16,12 @@
             <input class="search-input" pInputText type="text" [(ngModel)]="searchValue" (input)="onSearch($event)"
               placeholder="ابحث عن ..." />
           </span>
+          <button class="search-edit-btn">
+            <img src="images/filter-icon.svg" alt="filter icon">
+          </button>
+          <button class="search-edit-btn">
+            <img src="images/sort-icon.svg" alt="sort icon">
+          </button>
         </div>
         <div class="d-flex align-items-center">
 

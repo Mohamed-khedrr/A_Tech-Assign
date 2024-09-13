@@ -38,6 +38,7 @@
 
   .search-input.p-inputtext {
     margin: pxToRem(20);
+    margin-left: 0;
     border: solid pxToRem(1) rgba(146, 161, 173, 0.4);
     border-radius: $fs-8;
     width: pxToRem(278);
@@ -137,7 +138,8 @@
           background-color: transparent;
           border-radius: 0.3rem;
           &:hover {
-            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
           }
         }
         .ticket-icon-container {
@@ -160,20 +162,62 @@
 
   .p-paginator {
     padding: 1rem;
+    > * {
+      order: 100;
+    }
+
+    .p-paginator-current {
+      flex-grow: 1;
+      display: flex;
+      justify-content: start;
+      order: 2;
+      font-size: 10.5px;
+      color: rgba(51, 51, 51, 1);
+      font-family: $font-neo;
+    }
+    .p-inputwrapper {
+      order: 1;
+      margin: 0;
+      height: 2.5rem;
+      width: 5rem;
+      .p-dropdown-label {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        font-size: 10.5px;
+        font-family: $font-open;
+        color: rgba(51, 51, 51, 1);
+        font-weight: 600;
+        font-family: $font-open;
+      }
+    }
 
     .p-paginator-pages .p-paginator-page {
       border: none;
       border-radius: pxToRem(4.5);
       font-family: $font-inter;
+      font-size: 13.5px;
+      min-width: 27px;
+      width: 27px;
+      height: 27px;
       font-weight: 600;
       color: #7e8299;
       width: pxToRem(27);
       height: pxToRem(27);
       margin: pxToRem(4.8);
+      &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
+      }
 
       &.p-highlight {
         background-color: #6366f1;
+        cursor: default;
         color: #ffffff;
+        &:hover {
+          box-shadow: none;
+          transform: none;
+        }
       }
     }
 
@@ -181,6 +225,16 @@
     .p-paginator-next {
       border: none;
       color: #7e8299;
+      border-radius: 8px;
+      padding: 0;
+      background-color: #fff;
+      width: 30px;
+      height: 30px;
+      min-width: 0;
+      &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
+      }
 
       &.p-disabled {
         color: #d8d8e5;
@@ -230,6 +284,22 @@
     .search-input {
       padding-right: pxToRem(40);
       text-align: right;
+    }
+    .search-edit-btn {
+      border: solid 0.75px rgba(146, 161, 173, 0.4);
+      border-radius: 7.5px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      margin-right: 0.5rem;
+      transition: all 0.3s;
+      &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
+      }
     }
   }
 
