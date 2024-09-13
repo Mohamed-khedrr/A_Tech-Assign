@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './main-app.component.scss',
 })
 export class MainAppComponent {
-  selectedCity: any = { name: 'سنويا', code: 'year' };
+  selectedCity: string = '';
   data = [
     { name: 'سنويا', code: 'year' },
     { name: 'شهريا', code: 'month' },
