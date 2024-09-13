@@ -1,4 +1,11 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  inject,
+  Injector,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonDirective, ButtonModule } from 'primeng/button';
 import { Table, TableModule } from 'primeng/table';
@@ -12,6 +19,9 @@ import { ToggleBtnComponent } from '../layout/toggle-btn/toggle-btn.component';
 import { TooltipModule } from 'primeng/tooltip';
 import { StrLengthHandlerPipe } from './str-length-handler.pipe';
 import { FileSaverModule, FileSaverService } from 'ngx-filesaver';
+import { CardComponent } from '../card/card.component';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 interface Product {
   user: string;
@@ -49,6 +59,10 @@ export class TableComponent {
   @ViewChild('dt1') dt1!: Table;
 
   fileSaver = inject(FileSaverService);
+  componentFactoryResolver = inject(ComponentFactoryResolver);
+  injector = inject(Injector);
+  viewContainerRef = inject(ViewContainerRef);
+  fileSaverService = inject(FileSaverService);
 
   searchValue: string = '';
   isRTL: boolean = true;
@@ -67,14 +81,36 @@ export class TableComponent {
     return '';
   }
 
-  saveFile() {
-    const fileContent = 'This is the content of the file.';
-    const fileName = 'example.txt';
-    const fileType = 'text/plain';
+  async saveCardAsPdf() {
+    // Create and render the card component
+    const cardFactory =
+      this.componentFactoryResolver.resolveComponentFactory(CardComponent);
+    const cardComponentRef = this.viewContainerRef.createComponent(cardFactory);
 
-    const blob = new Blob([fileContent], { type: fileType });
+    // Wait for the component to render
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
-    this.fileSaver.save(blob, fileName);
+    // Get the rendered HTML element
+    const element = cardComponentRef.location.nativeElement;
+
+    // Use html2canvas to capture the rendered component
+    const canvas = await html2canvas(element);
+
+    // Create a new jsPDF instance
+    const pdf = new jsPDF();
+
+    // Add the canvas as an image to the PDF
+    const imgData = canvas.toDataURL('image/png');
+    pdf.addImage(imgData, 'PNG', 10, 10, 180, 64);
+
+    // Generate the PDF as a Blob
+    const pdfBlob = pdf.output('blob');
+
+    // Save the PDF using FileSaverService
+    this.fileSaverService.save(pdfBlob, 'card-component.pdf');
+
+    // Clean up: remove the temporary component
+    this.viewContainerRef.clear();
   }
 
   products: Product[] = [
