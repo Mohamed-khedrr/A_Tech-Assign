@@ -1,3 +1,9 @@
+@import "../../scss-utils/utils";
+
+* {
+  font-size: $font-neo;
+}
+
 .main-app-container {
   background-color: rgba(243, 245, 247, 1);
   padding: 20px;
@@ -6,5 +12,25 @@
   }
   .card-container {
     width: calc(100vw / 3);
+  }
+  .ticket-num {
+    font-size: calc(16rem / 16);
+    font-weight: 500;
+  }
+  .back-btn {
+    background-color: rgba(231, 234, 237, 1);
+    width: $fs-32;
+    height: $fs-32;
+    border-radius: $fs-8;
+  }
+
+  .edit-btn {
+    background-color: rgba(249, 249, 249, 1);
+    width: calc(78rem / 16);
+    height: calc(34rem / 16);
+    border-radius: (4rem/16);
+    border: 1px rgba(233, 234, 234, 1) solid;
+    font-size: $fs-14;
+    color: rgba(28, 28, 40, 1);
   }
 }

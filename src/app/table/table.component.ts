@@ -113,6 +113,19 @@ export class TableComponent {
     this.viewContainerRef.clear();
   }
 
+  clear(table: Table) {
+    table.clear();
+    this.searchValue = '';
+  }
+
+  onSearch(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    this.dt1.filterGlobal(value, 'contains');
+  }
+  toggleDirection() {
+    this.isRTL = !this.isRTL;
+  }
+
   products: Product[] = [
     {
       user: 'احمد محمود',
@@ -137,17 +150,4 @@ export class TableComponent {
       purchaseCount: 'مرة واحدة',
     },
   ];
-
-  clear(table: Table) {
-    table.clear();
-    this.searchValue = '';
-  }
-
-  onSearch(event: Event) {
-    const value = (event.target as HTMLInputElement).value;
-    this.dt1.filterGlobal(value, 'contains');
-  }
-  toggleDirection() {
-    this.isRTL = !this.isRTL;
-  }
 }
