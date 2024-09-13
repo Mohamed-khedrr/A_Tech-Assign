@@ -1,3 +1,4 @@
+import { LayoutDirectionServiceService } from './../services/layout-direction-service.service';
 import {
   Component,
   ComponentFactoryResolver,
@@ -64,19 +65,19 @@ export class TableComponent {
   injector = inject(Injector);
   viewContainerRef = inject(ViewContainerRef);
   fileSaverService = inject(FileSaverService);
+  layoutDirectionServiceService = inject(LayoutDirectionServiceService);
 
   searchValue: string = '';
-  isRTL = signal(false);
 
   getToolTipTxt(mainStr: string, originalStr: string): string {
-    if (mainStr.endsWith(' ...')) {
-      mainStr = mainStr.slice(0, mainStr.lastIndexOf('  ...'));
-    }
-    if (originalStr.length > mainStr.length) {
-      const compareChars = mainStr.slice(-10);
-      const startIndex = originalStr.indexOf(compareChars);
-      if (startIndex !== -1) {
-        return originalStr.substring(startIndex + 11);
+    if (mainStr.endsWith('...')) {
+      mainStr = mainStr.slice(0, mainStr.indexOf('  ...') - 3);
+      if (originalStr.length > mainStr.length) {
+        const compareChars = mainStr.slice(-10);
+        const startIndex = originalStr.indexOf(compareChars);
+        if (startIndex !== -1) {
+          return originalStr.substring(startIndex + 11);
+        }
       }
     }
     return '';
@@ -132,20 +133,75 @@ export class TableComponent {
         'https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png',
       ticketNumber: 'C-101',
       ticketPrice: 40,
-      cinemaName: 'سينما مصر, مول العرب, برج الظافرة, سيرايا القبة',
+      cinemaName: 'سينما مصر, مول العرب, برج الظافرة, سرايا القبة',
       peopleCount: 1,
       purchaseCount: 'مرة واحدة',
     },
     {
       user: 'محمد الغريب',
-      mobileNumber: '0101111111',
+      mobileNumber: '0102222222',
       userAvatar:
         'https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png',
       ticketNumber: 'C-102',
       ticketPrice: 30,
-      cinemaName: 'محمد خضر ,سينما مصر, مول العرب, برج الظافرة, سيرايا القبة',
+      cinemaName: 'محمد خضر ,سينما مصر, مول العرب, برج الظافرة, سرايا القبة',
       peopleCount: 1,
       purchaseCount: 'مرة واحدة',
+    },
+    {
+      user: 'خالد منصور',
+      mobileNumber: '0103333333',
+      userAvatar:
+        'https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png',
+      ticketNumber: 'C-103',
+      ticketPrice: 50,
+      cinemaName: 'سينما جراند, كايرو فيستيفال, مول الحسن, وسط البلد',
+      peopleCount: 2,
+      purchaseCount: 'مرتين',
+    },
+    {
+      user: 'محمود علي',
+      mobileNumber: '0104444444',
+      userAvatar:
+        'https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png',
+      ticketNumber: 'C-104',
+      ticketPrice: 45,
+      cinemaName: 'سينما ريفولي, مدينة نصر, مول السلام, القاهرة',
+      peopleCount: 3,
+      purchaseCount: 'ثلاث مرات',
+    },
+    {
+      user: 'عمرو حسن',
+      mobileNumber: '0105555555',
+      userAvatar:
+        'https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png',
+      ticketNumber: 'C-105',
+      ticketPrice: 35,
+      cinemaName: 'سينما كايرو, مول الاسكندرية, حي مصر الجديدة',
+      peopleCount: 1,
+      purchaseCount: 'مرة واحدة',
+    },
+    {
+      user: 'علي سعيد',
+      mobileNumber: '0106666666',
+      userAvatar:
+        'https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png',
+      ticketNumber: 'C-106',
+      ticketPrice: 60,
+      cinemaName: 'سينما السلام, حي المعادي, مول الجيزة, القاهرة',
+      peopleCount: 4,
+      purchaseCount: 'أربع مرات',
+    },
+    {
+      user: 'ياسر فهمي',
+      mobileNumber: '0107777777',
+      userAvatar:
+        'https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png',
+      ticketNumber: 'C-107',
+      ticketPrice: 55,
+      cinemaName: 'سينما الزمالك, مول الزهراء, الحي الخامس, الجيزة',
+      peopleCount: 2,
+      purchaseCount: 'مرتين',
     },
   ];
 }

@@ -191,3 +191,12 @@
 .lower-section {
   margin-top: 20px;
 }
+
+[dir="rtl"] {
+  .back-btn {
+    transform: rotate(180deg);
+  }
+  .ticket-num {
+    margin-left: 10px;
+  }
+}

@@ -1,4 +1,4 @@
-<div [dir]="isRTL() ? 'rtl' : 'ltr'">
+<div [dir]="layoutDirectionServiceService.isRTL() ? 'rtl' : 'ltr'">
   <p-card header="عرض التذكرة الخاصة بالفيلم" styleClass="card-item">
     <div class="ticket-body ">
       <button pTooltip="حذف" tooltipPosition="bottom" class="trash-btn border-0 ">

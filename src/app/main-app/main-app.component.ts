@@ -1,9 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ChartComponent } from '../chart/chart.component';
 import { TableComponent } from '../table/table.component';
 import { CardComponent } from '../card/card.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
+import { LayoutDirectionServiceService } from '../services/layout-direction-service.service';
 
 @Component({
   selector: 'app-main-app',
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './main-app.component.scss',
 })
 export class MainAppComponent {
-  isRTL = signal(true);
+  layoutDirectionServiceService = inject(LayoutDirectionServiceService);
+
   selectedCity: string = '';
   data = [
     { name: 'سنويا', code: 'year' },

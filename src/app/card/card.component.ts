@@ -5,6 +5,7 @@ import { TagModule } from 'primeng/tag';
 import { QRCodeModule } from 'angularx-qrcode';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { TooltipModule } from 'primeng/tooltip';
+import { LayoutDirectionServiceService } from '../services/layout-direction-service.service';
 
 @Component({
   selector: 'app-card',
@@ -16,7 +17,7 @@ import { TooltipModule } from 'primeng/tooltip';
 export class CardComponent {
   clipboard = inject(Clipboard);
 
-  isRTL = signal(false);
+  layoutDirectionServiceService = inject(LayoutDirectionServiceService);
 
   qrData = signal('hello');
   ticketLink = signal('www.tazkty.com/473847');

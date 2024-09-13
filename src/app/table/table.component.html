@@ -1,4 +1,4 @@
-<div class="main-container mt-3" [dir]="isRTL() ? 'rtl' : 'ltr'">
+<div class="main-container mt-3" [dir]="!layoutDirectionServiceService.isRTL() ? 'rtl' : 'ltr'">
   <div class="table-controls">
     <div class="search-container">
       <span class="title">مبيعات التذاكر</span>
@@ -23,7 +23,7 @@
   </div>
 
   <div class="table-container">
-    <p-table #dt1 [value]="products" [paginator]="true" [rows]="1" [showCurrentPageReport]="true"
+    <p-table #dt1 [value]="products" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
       [alwaysShowPaginator]="true" [showFirstLastIcon]="false" currentPageReportTemplate=" من أصل {totalRecords} "
       [sortMode]="'single'" [paginatorDropdownAppendTo]="'body'" [rowsPerPageOptions]="[1,5, 10, 25]"
       [globalFilterFields]="['user', 'ticketNumber', 'ticketPrice', 'activities', 'peopleCount', 'purchaseCount', 'ticketPdf']"
@@ -68,7 +68,7 @@
                 <img src="images/ticket-icon.svg" alt="ticket icon">
               </figure>
               <figcaption class="ticket-details">
-                <div class="ticket-number">
+                <div class="samll-ticket-number">
                   <span>تذكرة رقم </span>
                   <span>{{ product.ticketNumber }}</span>
                   <span>.pdf</span>
