@@ -7,18 +7,20 @@
     background-size: cover;
     background-position: center;
     border-radius: 12.5px;
-    position: relative;
-    max-height: 264px;
     * {
       font-family: $font-neo;
     }
-    padding: 1rem;
     text-align: center;
+
+    .p-card-content {
+      padding: 0;
+    }
 
     .p-card-title {
       font-size: 0.875rem;
       color: #fff;
       font-weight: 500;
+      margin-bottom: 1.2rem;
     }
 
     .ticket-link {
@@ -26,7 +28,6 @@
       max-width: 14.125rem;
       min-height: 2.625rem;
       margin: auto;
-      margin-top: 1.5rem;
       border-radius: 0.6rem;
       display: flex;
       align-items: center;
@@ -34,20 +35,28 @@
       font-size: 0.82rem;
       font-family: $font-inter;
       font-weight: 500;
-      .copy-btn {
-        transition: all 0.3s; /* Smooth transition for hover effect */
+      color: rgba(28, 28, 40, 1);
+    }
 
-        &:hover {
-          background-color: #e0e0e0;
-          border-radius: 0.3rem;
-          transform: scale(1.1);
-        }
+    .copy-btn {
+      transition: all 0.3s;
+      &:hover {
+        background-color: #e0e0e0;
+        border-radius: 0.3rem;
+        transform: scale(1.1);
       }
     }
+
+    .trash-btn {
+      position: absolute;
+      top: -3rem;
+      left: 0;
+    }
+
     .ticket-date {
       font-size: 0.75rem;
       color: #fff;
-      margin-top: 1rem;
+      margin-top: 0.5rem;
     }
 
     .ticket-body {
@@ -64,26 +73,22 @@
         border-radius: 50%;
       }
       &::before {
-        left: 0;
+        left: -0.2rem;
         bottom: 0;
         transform: translate(-100%, 50%);
       }
       &::after {
-        right: 0;
+        right: -0.2rem;
         bottom: 0;
         transform: translate(100%, 50%);
       }
     }
 
-    .trash-btn {
-      position: absolute;
-      top: -3rem;
-      left: 0;
-    }
     .ticket-footer {
-      padding: 1rem;
+      padding-top: 1rem;
       .left {
         .qr {
+          margin-left: 0.5rem;
           width: 5.13rem;
           height: 5.13rem;
           border-radius: 4px;
