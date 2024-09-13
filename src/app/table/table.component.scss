@@ -258,6 +258,10 @@
       order: 1;
       height: 2.5rem;
       width: 5rem;
+      @media (max-width: 576px) {
+        flex-grow: 1;
+        min-width: 60vw;
+      }
 
       .p-dropdown-label {
         padding: 0;
@@ -267,6 +271,9 @@
         font-family: $font-open;
         color: rgba(51, 51, 51, 1);
         font-weight: 600;
+        @media (max-width: 576px) {
+          justify-content: center;
+        }
       }
     }
 
@@ -357,5 +364,3 @@
     }
   }
 }
-
-// LT

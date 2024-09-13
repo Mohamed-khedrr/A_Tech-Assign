@@ -88,6 +88,10 @@
         }
 
         .right {
+          @media (max-width: 400px) {
+            flex-direction: column-reverse !important ;
+            gap: 0.5rem;
+          }
           .discount {
             font-size: $fs-14;
 
