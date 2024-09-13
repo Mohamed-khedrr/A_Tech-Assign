@@ -1,76 +1,178 @@
 @import "../../scss-utils/utils";
 
 * {
-  font-size: $font-neo;
+  font-family: $font-neo;
+  box-sizing: border-box;
 }
 
 .main-app-container {
   background-color: rgba(243, 245, 247, 1);
   width: 100%;
-  height: 100%;
-  padding: 30px;
-  padding-top: 80px;
-  .chart-container {
-    width: calc((100vw / 3) * 2);
-    height: 264px;
+  min-height: 100vh;
+  padding: 15px;
+  padding-top: 60px;
+  overflow-x: hidden;
 
-    .chart-header {
-      font-size: 14px;
-      color: rgba(28, 28, 40, 1);
-    }
-    .chart-data-container {
-      height: 60px;
-      border-radius: 8px 8px 0 0;
-    }
-    .chart-date {
-      font-size: 14px;
-      font-weight: 5 00;
-      font-family: $font-inter;
-      color: rgba(153, 161, 183, 1);
-    }
+  @media (min-width: 768px) {
+    padding: 30px;
+    padding-top: 80px;
   }
-  .card-container {
-    width: calc(100vw / 3);
+}
+
+.header-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+
+  @media (min-width: 576px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
-  .ticket-num {
+}
+
+.ticket-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (min-width: 576px) {
+    justify-content: flex-end;
+  }
+}
+
+.ticket-num {
+  font-size: calc(14rem / 16);
+  font-weight: 500;
+  margin: 0;
+  margin-right: 10px;
+
+  @media (min-width: 576px) {
     font-size: calc(16rem / 16);
-    font-weight: 500;
   }
-  .back-btn {
-    background-color: rgba(231, 234, 237, 1);
-    width: $fs-32;
-    height: $fs-32;
-    border-radius: $fs-8;
-    transition: all 0.3s;
-    &:hover {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      transform: translateY(-2px);
-    }
+}
+
+.back-btn {
+  background-color: rgba(231, 234, 237, 1);
+  width: $fs-32;
+  height: $fs-32;
+  border-radius: $fs-8;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+}
+
+.edit-btn {
+  background-color: rgba(249, 249, 249, 1);
+  width: 100%;
+  height: calc(34rem / 16);
+  border-radius: (4rem/16);
+  border: 1px rgba(233, 234, 234, 1) solid;
+  font-size: $fs-14;
+  color: rgba(28, 28, 40, 1);
+  transition: all 0.3s;
+
+  @media (min-width: 576px) {
+    width: calc(78rem / 16);
   }
 
-  .edit-btn {
-    background-color: rgba(249, 249, 249, 1);
-    width: calc(78rem / 16);
-    height: calc(34rem / 16);
-    border-radius: (4rem/16);
-    border: 1px rgba(233, 234, 234, 1) solid;
-    font-size: $fs-14;
-    color: rgba(28, 28, 40, 1);
-    transition: all 0.3s;
-    &:hover {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      transform: translateY(-2px);
-    }
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+}
+
+.data-section {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 20px;
+
+  @media (min-width: 992px) {
+    flex-direction: row;
+  }
+}
+
+.card-container {
+  width: 100%;
+
+  @media (min-width: 992px) {
+    width: calc(100% / 3);
+  }
+}
+
+.chart-container {
+  width: 100%;
+  height: auto;
+
+  @media (min-width: 992px) {
+    width: calc((100% / 3) * 2);
+    height: 264px;
+  }
+}
+
+.chart-data-container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px 8px 0 0;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 0 20px;
+  }
+}
+
+.chart-info {
+  text-align: right;
+  margin-top: 10px;
+
+  @media (min-width: 768px) {
+    margin-top: 0;
+  }
+}
+
+.chart-header {
+  font-size: 14px;
+  color: rgba(28, 28, 40, 1);
+  margin: 0;
+}
+
+.chart-date {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: $font-inter;
+  color: rgba(153, 161, 183, 1);
+  margin: 5px 0 0;
+
+  @media (min-width: 768px) {
+    font-size: 14px;
   }
 }
 
 :host ::ng-deep {
   .p-dropdown {
     flex-direction: row-reverse;
-    background-color: red;
     background-color: rgba(250, 250, 250, 1);
     border-radius: 8px;
     border: 1px solid rgba(232, 232, 232, 1);
+    width: 100%;
+
+    @media (min-width: 768px) {
+      width: auto;
+    }
+
     .p-dropdown-label.p-inputtext {
       padding-top: 10px;
       padding-bottom: 10px;
@@ -79,8 +181,13 @@
       color: rgba(28, 28, 40, 1);
     }
   }
+
   .p-dropdown-items {
     padding: 0;
     text-align: end;
   }
+}
+
+.lower-section {
+  margin-top: 20px;
 }

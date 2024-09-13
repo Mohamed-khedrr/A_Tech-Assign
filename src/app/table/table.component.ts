@@ -101,7 +101,7 @@ export class TableComponent {
 
     // Add the canvas as an image to the PDF
     const imgData = canvas.toDataURL('image/png');
-    pdf.addImage(imgData, 'PNG', 10, 10, 180, 64);
+    pdf.addImage(imgData, 'PNG', 10, 10, 180, 70);
 
     // Generate the PDF as a Blob
     const pdfBlob = pdf.output('blob');

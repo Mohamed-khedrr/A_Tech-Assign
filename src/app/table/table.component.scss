@@ -14,52 +14,140 @@
 :host ::ng-deep {
   * {
     font-family: $font-neo;
+    box-sizing: border-box;
   }
 
-  .p-datatable-header,
-  .main-conatianer {
+  .main-container {
     background-color: $bg-light;
-    border: none;
-    box-shadow: none;
-    padding: 1rem;
+    // padding: 1rem;
+    @media (max-width: 768px) {
+      // padding: 0.5rem;
+    }
   }
 
-  .p-datatable-wrapper {
-    background-color: #fff;
-    padding: $fs-8;
-    border-radius: $fs-8;
-    overflow: hidden;
+  .table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column-reverse;
+      align-items: stretch;
+    }
   }
 
-  .p-datatable {
-    border-radius: $fs-8;
-    overflow: hidden;
+  .search-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    @media (max-width: 576px) {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  .search-input-container {
+    position: relative;
   }
 
   .search-input.p-inputtext {
-    margin: pxToRem(20);
-    margin-left: 0;
     border: solid pxToRem(1) rgba(146, 161, 173, 0.4);
     border-radius: $fs-8;
-    width: pxToRem(278);
+    width: 100%;
+    max-width: pxToRem(278);
     height: pxToRem(36);
     transition: all 0.3s;
     outline: none;
     font-size: $fs-12;
+    padding-left: pxToRem(40);
+    padding-right: pxToRem(10);
+
     &:focus {
       border-color: rgba(146, 161, 173, 1);
+    }
+
+    @media (max-width: 576px) {
+      max-width: 100%;
     }
   }
 
   .search-icon {
+    position: absolute;
+    left: pxToRem(10);
+    top: 50%;
+    transform: translateY(-50%);
     color: rgba(41, 45, 50, 1);
   }
 
+  .button-container {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .search-edit-btn {
+    border: solid 0.75px rgba(146, 161, 173, 0.4);
+    border-radius: 7.5px;
+    width: 36px;
+    height: 36px;
+    @include flex-center;
+    background-color: #fff;
+    transition: all 0.3s;
+
+    &:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
+    }
+  }
+
+  .action-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    @media (max-width: 576px) {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  .reserv-btn.p-button {
+    background-color: $primary-color;
+    color: #ffffff;
+    border: none;
+    width: 100%;
+    max-width: pxToRem(180);
+    height: pxToRem(36);
+    padding: pxToRem(8) pxToRem(16);
+    border-radius: pxToRem(6);
+    font-size: $fs-12;
+    @include flex-center;
+
+    @media (max-width: 576px) {
+      max-width: 100%;
+    }
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
   .p-datatable {
+    min-width: 100%;
+    background-color: #fff;
+    border-radius: $fs-8;
+    overflow: hidden;
+
+    .p-datatable-wrapper {
+      overflow-x: auto;
+    }
+
     thead {
       background-color: #e3e4e9;
-      padding: $fs-10;
-      margin: pxToRem(20);
       tr {
         th {
           color: #abaab1;
@@ -67,6 +155,7 @@
           font-weight: 400;
           padding: 1rem;
           text-align: center;
+          white-space: nowrap;
           .p-element {
             color: #292d32;
           }
@@ -80,68 +169,37 @@
 
       td {
         padding: 1rem;
+        text-align: center;
+        white-space: nowrap;
+
+        .user-info {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
 
         .user-name {
           color: $text-dark;
           font-size: $fs-12;
+          margin: 0;
         }
         .user-mobile {
           font-size: $fs-10;
           color: $text-light;
-        }
-
-        .custom-chip {
-          background-color: #e6e1fc;
-          border-radius: pxToRem(12);
-          padding: pxToRem(4) $fs-8;
-          font-size: $fs-13;
-          font-weight: 400;
+          margin: 0;
         }
 
         .p-avatar {
           width: $fs-32;
           height: $fs-32;
         }
-
-        .pi-file-pdf {
-          color: $primary-color;
-        }
-      }
-
-      .row-number {
-        color: #898995;
-        font-size: $fs-14;
-      }
-
-      .ticket-number,
-      .ticket-price,
-      .table-cinema,
-      .people-count,
-      .purchase-count {
-        font-size: $fs-13;
-        color: $text-dark;
-        font-family: $font-inter;
-      }
-
-      .table-cinema,
-      .purchase-count {
-        font-family: $font-neo;
       }
 
       .ticket-file {
         display: flex;
-        font-size: $fs-12;
-        font-weight: 500;
-        gap: 0;
-        .download-btn {
-          transition: all 0.3s;
-          background-color: transparent;
-          border-radius: 0.3rem;
-          &:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transform: translateY(-2px);
-          }
-        }
+        align-items: center;
+        gap: 0.5rem;
+
         .ticket-icon-container {
           margin: 0;
           background-color: rgba($primary-color, 0.1);
@@ -151,10 +209,32 @@
           @include flex-center;
         }
 
+        .ticket-details {
+          text-align: left;
+        }
+
+        .ticket-number {
+          font-size: $fs-12;
+          font-weight: 500;
+        }
+
         .file-data {
           font-family: $font-inter;
           font-size: $fs-10;
           color: rgba(0, 0, 0, 0.4);
+        }
+
+        .download-btn {
+          background-color: transparent;
+          border: none;
+          padding: 0.5rem;
+          border-radius: 0.3rem;
+          transition: all 0.3s;
+
+          &:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+          }
         }
       }
     }
@@ -162,24 +242,23 @@
 
   .p-paginator {
     padding: 1rem;
-    > * {
-      order: 100;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 
     .p-paginator-current {
       flex-grow: 1;
-      display: flex;
-      justify-content: start;
       order: 2;
       font-size: 10.5px;
       color: rgba(51, 51, 51, 1);
       font-family: $font-neo;
     }
+
     .p-inputwrapper {
       order: 1;
-      margin: 0;
       height: 2.5rem;
       width: 5rem;
+
       .p-dropdown-label {
         padding: 0;
         display: flex;
@@ -188,35 +267,40 @@
         font-family: $font-open;
         color: rgba(51, 51, 51, 1);
         font-weight: 600;
-        font-family: $font-open;
       }
     }
 
-    .p-paginator-pages .p-paginator-page {
-      border: none;
-      border-radius: pxToRem(4.5);
-      font-family: $font-inter;
-      font-size: 13.5px;
-      min-width: 27px;
-      width: 27px;
-      height: 27px;
-      font-weight: 600;
-      color: #7e8299;
-      width: pxToRem(27);
-      height: pxToRem(27);
-      margin: pxToRem(4.8);
-      &:hover {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transform: translateY(-2px);
-      }
+    .p-paginator-pages {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
 
-      &.p-highlight {
-        background-color: #6366f1;
-        cursor: default;
-        color: #ffffff;
+      .p-paginator-page {
+        border: none;
+        border-radius: pxToRem(4.5);
+        font-family: $font-inter;
+        font-size: 13.5px;
+        min-width: 27px;
+        width: 27px;
+        height: 27px;
+        font-weight: 600;
+        color: #7e8299;
+        margin: 0;
+        transition: all 0.3s;
+
         &:hover {
-          box-shadow: none;
-          transform: none;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          transform: translateY(-2px);
+        }
+
+        &.p-highlight {
+          background-color: #6366f1;
+          cursor: default;
+          color: #ffffff;
+          &:hover {
+            box-shadow: none;
+            transform: none;
+          }
         }
       }
     }
@@ -231,6 +315,8 @@
       width: 30px;
       height: 30px;
       min-width: 0;
+      transition: all 0.3s;
+
       &:hover {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         transform: translateY(-2px);
@@ -247,31 +333,16 @@
     }
   }
 
-  .p-inputtext {
-    border-radius: pxToRem(20);
-  }
-
-  .p-button.reserv-btn {
-    background-color: $primary-color;
-    color: #ffffff;
-    border: none;
-    width: pxToRem(100);
-    height: pxToRem(35);
-    padding: pxToRem(13) pxToRem(10);
-    border-radius: pxToRem(6);
-    font-size: $fs-12;
-    @include flex-center;
-  }
-
-  .search-icon {
-    position: relative;
-    right: pxToRem(48);
-  }
-
   // RTL Changes
   [dir="rtl"] {
-    .p-datatable .p-datatable-tbody tr td {
-      text-align: center;
+    .search-icon {
+      left: auto;
+      right: pxToRem(10);
+    }
+
+    .search-input.p-inputtext {
+      padding-left: pxToRem(10);
+      padding-right: pxToRem(40);
     }
 
     .p-paginator {
@@ -281,58 +352,10 @@
       }
     }
 
-    .search-input {
-      padding-right: pxToRem(40);
+    .ticket-file .ticket-details {
       text-align: right;
-    }
-    .search-edit-btn {
-      border: solid 0.75px rgba(146, 161, 173, 0.4);
-      border-radius: 7.5px;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #fff;
-      margin-right: 0.5rem;
-      transition: all 0.3s;
-      &:hover {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transform: translateY(-2px);
-      }
-    }
-  }
-
-  // LTR Changes
-  [dir="ltr"] {
-    .p-datatable .p-datatable-tbody tr td {
-      text-align: center;
-    }
-
-    .p-input-icon-left {
-      position: relative;
-    }
-
-    .search-icon {
-      left: pxToRem(48);
-    }
-
-    .search-input {
-      padding-left: pxToRem(40);
-      text-align: left;
-    }
-  }
-
-  // LTR Button
-  .p-togglebutton.p-button {
-    background-color: #f8f9fa;
-    border: pxToRem(1) solid #ced4da;
-    color: #495057;
-
-    &.p-highlight {
-      background-color: #6366f1;
-      border-color: #6366f1;
-      color: #ffffff;
     }
   }
 }
+
+// LT

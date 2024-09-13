@@ -1,95 +1,90 @@
-<div class="main-conatianer mt-3    " [dir]="isRTL ? 'rtl' : 'ltr'">
-
-  <p-table #dt1 [value]="products" [paginator]="true" [rows]="1" [showCurrentPageReport]="true"
-    [alwaysShowPaginator]="true" [showFirstLastIcon]="false" currentPageReportTemplate=" من أصل {totalRecords} "
-    [sortMode]="'single'" [paginatorDropdownAppendTo]="'body'" [rowsPerPageOptions]="[1,5, 10, 25]"
-    [globalFilterFields]="['user', 'ticketNumber', 'ticketPrice', 'activities', 'peopleCount', 'purchaseCount', 'ticketPdf']">
-
-    <ng-template pTemplate="caption">
-      <div class="d-flex align-items-center justify-content-between  ">
-        <div class="d-flex justify-content-end align-items-center">
-          <span>
-            مبيعات التذاكر
-          </span>
-          <span class="p-input-icon-left ml-auto">
-            <i class="search-icon pi pi-search"></i>
-            <input class="search-input" pInputText type="text" [(ngModel)]="searchValue" (input)="onSearch($event)"
-              placeholder="ابحث عن ..." />
-          </span>
-          <button class="search-edit-btn">
-            <img src="images/filter-icon.svg" alt="filter icon">
-          </button>
-          <button class="search-edit-btn">
-            <img src="images/sort-icon.svg" alt="sort icon">
-          </button>
-        </div>
-        <div class="d-flex align-items-center">
-
-          <app-toggle-btn></app-toggle-btn>
-
-
-          <button pButton label="حجز تذكرة جديدة" class="reserv-btn"></button>
-        </div>
+<div class="main-container mt-3" [dir]="isRTL ? 'rtl' : 'ltr'">
+  <div class="table-controls">
+    <div class="search-container">
+      <span class="title">مبيعات التذاكر</span>
+      <div class="search-input-container">
+        <i class="search-icon pi pi-search"></i>
+        <input class="search-input" pInputText type="text" [(ngModel)]="searchValue" (input)="onSearch($event)"
+          placeholder="ابحث عن ..." />
       </div>
-    </ng-template>
+      <div class="button-container">
+        <button class="search-edit-btn">
+          <img src="images/filter-icon.svg" alt="filter icon">
+        </button>
+        <button class="search-edit-btn">
+          <img src="images/sort-icon.svg" alt="sort icon">
+        </button>
+      </div>
+    </div>
+    <div class="action-container">
+      <app-toggle-btn></app-toggle-btn>
+      <button pButton label="حجز تذكرة جديدة" class="reserv-btn"></button>
+    </div>
+  </div>
 
-    <ng-template pTemplate="header">
-      <tr class="tr-head">
-        <th>#</th>
-        <th>المستخدم </th>
-        <th>رقم التذكرة </th>
-        <th pSortableColumn="ticketPrice">قيمة التذكرة <p-sortIcon field="ticketPrice"></p-sortIcon></th>
-        <th>السينمات </th>
-        <th>عدد الأشخاص </th>
-        <th>عدد مرات الشراء</th>
-        <th>التذكرة</th>
-      </tr>
-    </ng-template>
+  <div class="table-container">
+    <p-table #dt1 [value]="products" [paginator]="true" [rows]="1" [showCurrentPageReport]="true"
+      [alwaysShowPaginator]="true" [showFirstLastIcon]="false" currentPageReportTemplate=" من أصل {totalRecords} "
+      [sortMode]="'single'" [paginatorDropdownAppendTo]="'body'" [rowsPerPageOptions]="[1,5, 10, 25]"
+      [globalFilterFields]="['user', 'ticketNumber', 'ticketPrice', 'activities', 'peopleCount', 'purchaseCount', 'ticketPdf']"
+      [responsive]="true">
 
-    <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
-      <tr>
-        <td class="row-number">{{ rowIndex + 1 }}</td>
-        <td>
-          <div class="d-flex flex align-items-center gap-2">
-            <p-avatar [image]="product.userAvatar" shape="circle" size="large"></p-avatar>
-            <div>
-              <p class="mb-0 user-name">{{ product.user }}</p>
-              <p class="mb-0 user-mobile">{{product.mobileNumber}}</p>
+      <ng-template pTemplate="header">
+        <tr class="tr-head">
+          <th>#</th>
+          <th>المستخدم </th>
+          <th>رقم التذكرة </th>
+          <th pSortableColumn="ticketPrice">قيمة التذكرة <p-sortIcon field="ticketPrice"></p-sortIcon></th>
+          <th>السينمات </th>
+          <th>عدد الأشخاص </th>
+          <th>عدد مرات الشراء</th>
+          <th>التذكرة</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
+        <tr>
+          <td class="row-number">{{ rowIndex + 1 }}</td>
+          <td>
+            <div class="user-info">
+              <p-avatar [image]="product.userAvatar" shape="circle" size="large"></p-avatar>
+              <div class="user-details">
+                <p class="user-name">{{ product.user }}</p>
+                <p class="user-mobile">{{product.mobileNumber}}</p>
+              </div>
             </div>
-          </div>
-        </td>
-        <td class="ticket-number">{{ product.ticketNumber }}</td>
-        <td class="ticket-price">${{ product.ticketPrice }}</td>
-        <td class="table-cinema" [pTooltip]="getToolTipTxt((product.cinemaName|strLengthHandler), product.cinemaName)"
-          tooltipPosition="top">
-          {{product.cinemaName|strLengthHandler}}
-        </td>
-        <td class="people-count">{{ product.peopleCount }}</td>
-        <td class="purchase-count">{{ product.purchaseCount }}</td>
-        <td>
-          <div class="d-flex align-items-center ticket-file ">
-            <figure class="ticket-icon-container">
-              <img src="images/ticket-icon.svg" alt="ticket icon">
-            </figure>
-            <figcaption>
-              <div>
-                <span>تذكرة رقم </span>
-                <span>{{ product.ticketNumber }}</span>
-                <span>.pdf</span>
-              </div>
-              <div class="text-end file-data">
-                <span class="file-size mx-1">9mb</span>
-                .
-                <span class="file-type mx-1">PDF</span>
-              </div>
-            </figcaption>
-            <button (click)="saveCardAsPdf()" class="download-btn p-0 border-0 mx-3">
-              <img src="images/download-icon.svg" alt="User Avatar">
-            </button>
-          </div>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
-
+          </td>
+          <td class="ticket-number">{{ product.ticketNumber }}</td>
+          <td class="ticket-price">${{ product.ticketPrice }}</td>
+          <td class="table-cinema" [pTooltip]="getToolTipTxt((product.cinemaName|strLengthHandler), product.cinemaName)"
+            tooltipPosition="top">
+            {{product.cinemaName|strLengthHandler}}
+          </td>
+          <td class="people-count">{{ product.peopleCount }}</td>
+          <td class="purchase-count">{{ product.purchaseCount }}</td>
+          <td>
+            <div class="ticket-file">
+              <figure class="ticket-icon-container">
+                <img src="images/ticket-icon.svg" alt="ticket icon">
+              </figure>
+              <figcaption class="ticket-details">
+                <div class="ticket-number">
+                  <span>تذكرة رقم </span>
+                  <span>{{ product.ticketNumber }}</span>
+                  <span>.pdf</span>
+                </div>
+                <div class="file-data">
+                  <span class="file-size">9mb</span>
+                  <span class="file-type">PDF</span>
+                </div>
+              </figcaption>
+              <button (click)="saveCardAsPdf()" class="download-btn">
+                <img src="images/download-icon.svg" alt="User Avatar">
+              </button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
 </div>
