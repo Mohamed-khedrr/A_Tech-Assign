@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ChartComponent } from '../chart/chart.component';
 import { TableComponent } from '../table/table.component';
 import { CardComponent } from '../card/card.component';
@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './main-app.component.scss',
 })
 export class MainAppComponent {
+  isRTL = signal(true);
   selectedCity: string = '';
   data = [
     { name: 'سنويا', code: 'year' },

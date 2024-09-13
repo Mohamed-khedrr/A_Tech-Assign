@@ -3,6 +3,7 @@ import {
   ComponentFactoryResolver,
   inject,
   Injector,
+  signal,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
@@ -65,7 +66,7 @@ export class TableComponent {
   fileSaverService = inject(FileSaverService);
 
   searchValue: string = '';
-  isRTL: boolean = true;
+  isRTL = signal(false);
 
   getToolTipTxt(mainStr: string, originalStr: string): string {
     if (mainStr.endsWith(' ...')) {
@@ -121,9 +122,6 @@ export class TableComponent {
   onSearch(event: Event) {
     const value = (event.target as HTMLInputElement).value;
     this.dt1.filterGlobal(value, 'contains');
-  }
-  toggleDirection() {
-    this.isRTL = !this.isRTL;
   }
 
   products: Product[] = [

@@ -1,37 +1,38 @@
-<p-card header="عرض التذكرة الخاصة بالفيلم" styleClass="card-item">
+<div [dir]="isRTL() ? 'rtl' : 'ltr'">
+  <p-card header="عرض التذكرة الخاصة بالفيلم" styleClass="card-item">
+    <div class="ticket-body ">
+      <button pTooltip="حذف" tooltipPosition="bottom" class="trash-btn border-0 ">
+        <img src="images/trash-icon.svg" alt="Trash icon">
+      </button>
+      <p class="ticket-link">
+        <button (click)="copyTicketLink()" class="copy-btn border-0 me-2"><img src="/images/copy-icon.svg"
+            alt="copy icon"></button>
+        {{ticketLink()}}
+      </p>
+      <p class="ticket-date">{{createStringDate()}}</p>
+    </div>
+    <ng-template pTemplate="footer ">
+      <footer class="ticket-footer d-flex justify-content-between align-items-end">
 
-  <div class="ticket-body ">
-    <button pTooltip="حذف" tooltipPosition="bottom" class="trash-btn border-0 ">
-      <img src="images/trash-icon.svg" alt="Trash icon">
-    </button>
-    <p class="ticket-link">
-      <button (click)="copyTicketLink()" class="copy-btn border-0 me-2"><img src="/images/copy-icon.svg"
-          alt="copy icon"></button>
-      {{ticketLink()}}
-    </p>
-    <p class="ticket-date">{{createStringDate()}}</p>
-  </div>
-  <ng-template pTemplate="footer ">
-    <footer class="ticket-footer d-flex justify-content-between align-items-end">
-
-      <section class="left">
-        <div class="qr">
-          <qrcode [qrdata]="'Your data string'" [width]="82" [qrdata]="qrData()" [margin]="1"
-            [errorCorrectionLevel]="'M'"></qrcode>
-        </div>
-      </section>
-      <section class="right d-flex align-items-end  ">
-        <button class="share-btn">
-          مشاركة
-          <span>
-            <img src="images/send-icon.svg" alt="">
-          </span>
-        </button>
-        <p class="discount my-0 gap-2 mx-4  d-flex flex-column">
-          <span>خصم</span>
-          <span class="discount-num">25%</span>
-        </p>
-      </section>
-    </footer>
-  </ng-template>
-</p-card>
+        <section class="left">
+          <div class="qr">
+            <qrcode [qrdata]="'Your data string'" [width]="82" [qrdata]="qrData()" [margin]="1"
+              [errorCorrectionLevel]="'M'"></qrcode>
+          </div>
+        </section>
+        <section class="right d-flex align-items-end  ">
+          <button class="share-btn">
+            مشاركة
+            <span>
+              <img src="images/send-icon.svg" alt="">
+            </span>
+          </button>
+          <p class="discount my-0 gap-2 mx-4  d-flex flex-column">
+            <span>خصم</span>
+            <span class="discount-num">25%</span>
+          </p>
+        </section>
+      </footer>
+    </ng-template>
+  </p-card>
+</div>

@@ -365,4 +365,22 @@
       text-align: right;
     }
   }
+
+  // LTR-specific styles
+  .search-icon {
+    position: absolute;
+    left: pxToRem(10);
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(41, 45, 50, 1);
+  }
+
+  .search-input.p-inputtext {
+    padding-left: pxToRem(40);
+    padding-right: pxToRem(10);
+  }
+
+  .ticket-file .ticket-details {
+    text-align: left;
+  }
 }

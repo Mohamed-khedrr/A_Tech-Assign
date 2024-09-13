@@ -16,6 +16,8 @@ import { TooltipModule } from 'primeng/tooltip';
 export class CardComponent {
   clipboard = inject(Clipboard);
 
+  isRTL = signal(false);
+
   qrData = signal('hello');
   ticketLink = signal('www.tazkty.com/473847');
   ticketData: Signal<Date> = signal(new Date(2024, 9, 26));
